@@ -17,12 +17,8 @@ class dim_convex_hull_impl {
 public:
 	dim_convex_hull_impl(std::vector<ChVector<>> points) : m_params(points) {
 		auto vshape = std::make_shared<ChTriangleMeshShape>();
-		collision::ChConvexHullLibraryWrapper lh;
-		lh.ComputeHull(points, vshape->GetMesh());
-
-		ChVector<> baricenter;
-		ChMatrix33<> inertia;
-		vshape->GetMesh().ComputeMassProperties(true, m_volume, baricenter, inertia);
+		collision::ChConvexHullLibraryWrapper().ComputeHull(points, vshape->GetMesh());
+		vshape->GetMesh().ComputeMassProperties(true, m_volume, ChVector<>(), ChMatrix33<>());
 	}
 
 	virtual ~dim_convex_hull_impl() = default;
