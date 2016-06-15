@@ -7,6 +7,8 @@ Chrono::Ingot lets you to create objects of arbitrary mass without explicitly gi
 - ChBodyEasyConvexHullAuxRef
 - ChBodyEasyClusterOfSpheres
 
+**Chrono::Ingot is not a part of Project Chrono. Please take care not to ask Chrono team about this library.**
+
 ## Motivation
 Chrono::Engine provides easy ways to create rigid bodies of uniform density (ChEasyBox, ChEasyCylinder, etc.).
 They are helpful enough when you know certain densities of objects, however things will be a bit troublesome if you want an object with an actual mass; you must calculate a density on your own in such a case.
@@ -30,3 +32,6 @@ They are helpful enough when you know certain densities of objects, however thin
     	const chrono::ingot::ChDensity dens(1000.);
         std::shared_ptr<ChBodyEasyBox> body2 = chrono::ingot::make_body(dim, dens /* [, collide, visual_assets] */);
 	}
+
+## Acknowledgements
+This library was made while research activities of Electronic System Control Engineering Laboratory at Muroran Institute of Technology.
