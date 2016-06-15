@@ -25,6 +25,8 @@ public:
 		vshape->GetMesh().ComputeMassProperties(true, m_volume, baricenter, inertia);
 	}
 
+	virtual ~dim_convex_hull_impl() = default;
+
 	auto get_params() const {
 		return m_params;
 	}
