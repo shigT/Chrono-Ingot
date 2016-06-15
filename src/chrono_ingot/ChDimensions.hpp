@@ -15,6 +15,12 @@ class ChDimensions {
 	static_assert(sizeof(ChEasyShape) == 0, "ChDimensions: Bad template argument");
 };
 
+using ChDimensionsEasyBox = ChDimensions<ChBodyEasyBox>;
+using ChDimensionsEasyCylinder = ChDimensions<ChBodyEasyCylinder>;
+using ChDimensionsEasySphere = ChDimensions<ChBodyEasySphere>;
+using ChDimensionsEasyConvexHull = ChDimensions<ChBodyEasyConvexHull>;
+using ChDimensionsEasyConvexHullAuxRef = ChDimensions<ChBodyEasyConvexHullAuxRef>;
+using ChDimensionsEasyClusterOfSpheres = ChDimensions<ChBodyEasyClusterOfSpheres>;
 
 /**
 * Class defining Dimensions of a box (width, depth and height).
