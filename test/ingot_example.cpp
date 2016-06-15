@@ -1,3 +1,10 @@
+/*
+ *  Chrono::Ingot
+ *      Mass-based rigid body creation for Chrono::Engine
+ *
+ *  ingot_example.cpp
+ */
+
 #include <chrono_ingot/make_body.hpp>
 
 int main(int, char*[]){

@@ -1,3 +1,10 @@
+/*
+ *  Chrono::Ingot
+ *      Mass-based rigid body creation for Chrono::Engine
+ *
+ *  make_body.hpp
+ */
+
 #ifndef CHRONO_INGOT_MAKE_BODY_HPP
 #define CHRONO_INGOT_MAKE_BODY_HPP
 

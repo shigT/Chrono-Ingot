@@ -1,6 +1,9 @@
-// Chrono::Ingot
-// 
-
+/*
+ *  Chrono::Ingot
+ *      Mass-based rigid body creation for Chrono::Engine
+ *
+ *  ChDimensions.hpp
+ */
 
 #ifndef CHRONO_INGOT_CHDIMENSIONS_HPP
 #define CHRONO_INGOT_CHDIMENSIONS_HPP
