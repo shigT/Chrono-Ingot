@@ -10,6 +10,37 @@
 namespace chrono {
 namespace ingot {
 
+namespace detail {
+
+class dim_convex_hull_impl {
+public:
+	dim_convex_hull_impl(std::vector<ChVector<>> points) : m_params(points) {
+		auto vshape = std::make_shared<ChTriangleMeshShape>();
+		collision::ChConvexHullLibraryWrapper lh;
+		lh.ComputeHull(points, vshape->GetMesh());
+
+		ChVector<> baricenter;
+		ChMatrix33<> inertia;
+		vshape->GetMesh().ComputeMassProperties(true, m_volume, baricenter, inertia);
+	}
+
+	auto get_params() const {
+		return m_params;
+	}
+
+	double get_volume() const {
+		return m_volume;
+	}
+
+private:
+	std::tuple<std::vector<ChVector<>>> m_params;
+	double m_volume;
+};
+
+} // end namespace detail
+
+
+
 template <class ChEasyShape>
 class ChDimensions {
 	static_assert(sizeof(ChEasyShape) == 0, "ChDimensions: Bad template argument");
@@ -89,37 +120,19 @@ private:
 * Class defining Dimensions of a convex hull (nodes).
 */
 template<>
-class ChDimensions<chrono::ChBodyEasyConvexHull> {
+class ChDimensions<chrono::ChBodyEasyConvexHull> : public detail::dim_convex_hull_impl {
 public:
-	ChDimensions(std::vector<ChVector<>> points) : m_params(points) {
-		auto vshape = std::make_shared<ChTriangleMeshShape>();
-		collision::ChConvexHullLibraryWrapper lh;
-		lh.ComputeHull(points, vshape->GetMesh());
+	using detail::dim_convex_hull_impl::dim_convex_hull_impl;
 
-		ChVector<> baricenter;
-		ChMatrix33<> inertia;
-		vshape->GetMesh().ComputeMassProperties(true, m_volume, baricenter, inertia);
-	}
-
-	auto get_params() const {
-		return m_params;
-	}
-
-	double get_volume() const {
-		return m_volume;
-	}
-
-private:
-	std::tuple<std::vector<ChVector<>>> m_params;
-	double m_volume;
 };
 
 /**
 * Class defining Dimensions of a convex hull that has auxiliary reference (nodes).
 */
 template<>
-class ChDimensions<chrono::ChBodyEasyConvexHullAuxRef> : public ChDimensions<ChBodyEasyConvexHull> {
-	using ChDimensions<ChBodyEasyConvexHull>::ChDimensions;
+class ChDimensions<chrono::ChBodyEasyConvexHullAuxRef> : public detail::dim_convex_hull_impl {
+public:
+	using detail::dim_convex_hull_impl::dim_convex_hull_impl;
 };
 
 /**
