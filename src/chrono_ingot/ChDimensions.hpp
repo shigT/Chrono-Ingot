@@ -6,6 +6,7 @@
 #define CHRONO_INGOT_CHDIMENSIONS_HPP
 
 #include <chrono/physics/ChBodyEasy.h>
+#include <numeric>
 
 namespace chrono {
 namespace ingot {
@@ -141,12 +142,18 @@ public:
 template<>
 class ChDimensions<chrono::ChBodyEasyClusterOfSpheres> {
 public:
-	ChDimensions(std::vector<ChVector<>> positions, std::vector<double> radii) : m_params(positions, radii) {
-		m_volume = 0.;
-		for (const auto& radius : radii) {
-			m_volume += (4.0 / 3.0) * CH_C_PI * pow(radius, 3);
-		}
-	}
+	ChDimensions(std::vector<ChVector<>> positions, std::vector<double> radii) 
+		: m_params(positions, radii)
+		, m_volume(
+			std::accumulate(
+				radii.cbegin()
+				, radii.cend()
+				, 0.
+				, [](double vols, double radius) {
+					return vols += (4.0 / 3.0) * CH_C_PI * pow(radius, 3);
+				}
+			)
+		) { }
 
 	auto get_params() const {
 		return m_params;
