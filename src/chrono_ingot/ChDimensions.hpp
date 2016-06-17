@@ -22,7 +22,7 @@ public:
 		set_volume();
 	}
 
-	dim_convex_hull_impl(std::vector<ChVector<>>&& points) : m_params(points) {
+	dim_convex_hull_impl(std::vector<ChVector<>>&& points) : m_params(std::move(points)) {
 		set_volume();
 	}
 
@@ -157,7 +157,7 @@ public:
 	{ }
 
 	ChDimensions(std::vector<ChVector<>>&& positions, std::vector<double>&& radii)
-		: m_params(positions, radii)
+		: m_params(std::move(positions), std::move(radii))
 		, m_volume(get_total_volume(radii.cbegin(), radii.cend()))
 	{ }
 
