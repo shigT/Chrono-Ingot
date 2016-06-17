@@ -158,7 +158,7 @@ public:
 
 	ChDimensions(std::vector<ChVector<>>&& positions, std::vector<double>&& radii)
 		: m_params(std::move(positions), std::move(radii))
-		, m_volume(get_total_volume(radii.cbegin(), radii.cend()))
+		, m_volume(get_total_volume(std::get<1>(m_params).cbegin(), std::get<1>(m_params).cend()))
 	{ }
 
 	auto get_params() const {
