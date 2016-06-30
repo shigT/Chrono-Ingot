@@ -36,12 +36,12 @@ std::shared_ptr<ChEasyShape> make_body_impl(unpacker<S...>, ChDimensions<ChEasyS
 } // end namespace detail
 
 template <class ChEasyShape> 
-std::shared_ptr<ChEasyShape> make_body(ChDimensions<ChEasyShape>dimensions, ChDensity dens, bool collide = false, bool visual_asset = true) {
+std::shared_ptr<ChEasyShape> make_body(ChDimensions<ChEasyShape>dimensions, ChDensity dens, bool collide = false, bool visual_asset = true, ChMaterialSurfaceBase::ContactMethod contact_method = ChMaterialSurfaceBase::DVI) {
 	return detail::make_body_impl<ChEasyShape>(typename detail::gens<std::tuple_size<decltype(dimensions.get_params())>::value>::type(), dimensions, dens.get_density(), collide, visual_asset);
 }
 
 template <class ChEasyShape>
-std::shared_ptr<ChEasyShape> make_body(ChDimensions<ChEasyShape>dimensions, ChMass mass, bool collide = false, bool visual_asset = true) {
+std::shared_ptr<ChEasyShape> make_body(ChDimensions<ChEasyShape>dimensions, ChMass mass, bool collide = false, bool visual_asset = true, ChMaterialSurfaceBase::ContactMethod contact_method = ChMaterialSurfaceBase::DVI) {
 	return detail::make_body_impl<ChEasyShape>(typename detail::gens<std::tuple_size<decltype(dimensions.get_params())>::value>::type(), dimensions, mass.get_density(dimensions), collide, visual_asset);
 }
 

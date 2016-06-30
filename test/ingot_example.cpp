@@ -16,9 +16,9 @@ int main(int, char*[]){
     
     // Mass based creation
     const chrono::ingot::ChMass mass(0.5);
-    std::shared_ptr<ChBodyEasyBox> body1 = chrono::ingot::make_body(dim, mass /* [, collide, visual_assets] */);
+    std::shared_ptr<ChBodyEasyBox> body1 = chrono::ingot::make_body(dim, mass /* [, collide, visual_assets, contact_method] */);
     
     // Density based creation
     const chrono::ingot::ChDensity dens(1000.);
-    std::shared_ptr<ChBodyEasyBox> body2 = chrono::ingot::make_body(dim, dens /* [, collide, visual_assets] */);
+    std::shared_ptr<ChBodyEasyBox> body2 = chrono::ingot::make_body(dim, dens /* [, collide, visual_assets, contact_method] */);
 }
