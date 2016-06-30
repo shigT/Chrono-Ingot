@@ -18,7 +18,7 @@ void ensure_mass(const std::shared_ptr<ChBody> body, const ChMass& mass) {
 	assert(abs(body->GetMass() - mass.get_mass()) < eps);
 }
 
-void ensure_dens(const std::shared_ptr<const ChBody> body, const ChDensity& dens) {
+void ensure_dens(const std::shared_ptr<ChBody> body, const ChDensity& dens) {
 	assert(abs(body->GetDensity() - dens.get_density()) < eps);
 }
 
